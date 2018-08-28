@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="時計,clock">
+    <meta name="description" content="小説の一節で時間を伝える時計です。">
+    <title>小説時計</title>
+    <!-- favicon (https://realfavicongenerator.net/) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#ffffff">
+    <!-- og -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@inaniwa3">
+    <meta property="og:title" content="小説時計">
+    <meta property="og:description" content="小説の一節で時間を伝える時計です。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inaniwa3.github.io/novel-clock/">
+    <meta property="og:image" content="https://inaniwa3.github.io/novel-clock/img/og.png">
+    <!-- iOS Safari (Add to Home Screen) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <!-- novel-clock -->
+    <style type="text/css">
+    html {
+        height: 100%;
+    }
+    body {
+        height: 100%;
+        width: 93%;
+        margin: 0% 3% 0% 4%;
+        background-color: #FFFFFF;
+        color: #000000;
+        font-family: "游明朝", YuMincho, "Hiragino Mincho ProN", "Hiragino Mincho Pro", "メイリオ";
+    }
+    .d {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+    }
+    .d.d0 { height: 12%; }
+    .d.d1 { height: 80%; }
+    #s0 {
+        text-align: left;
+        font-weight: bold;
+        font-size: 5vmax;
+    }
+    #s1 {
+        text-align: right;
+        font-size: 4vmax;
+        padding-top: 2vmax;
+    }
+    a { text-decoration: none; }
+    a:link { color: #000000; }
+    a:visited { color: #000000; }
+    a:hover { color: #000000; }
+    a:active { color: #000000; }
+    *:focus { /* erase blue line (Chrome) */
+        outline: none;
+    }
+    </style>
+    <script type="text/javascript" src="js/aozora.js"></script>
+    <script type="text/javascript">
+    var prev_a = [];
+    clock = function() {
+        var date = new Date();
+        var dh = ("0" + date.getHours()).slice(-2);
+        var dd = Math.floor(date.getTime() / (1000 * 60 * 60 * 24));
+        var a = AOZORA[dh][dd % (AOZORA[dh].length)];
+        if (a == prev_a) { return; }
+        document.getElementById("s0").innerHTML = a[3];
+        document.getElementById("s1").innerHTML =
+            "<a href = \"" + a[2] + "\" target=\"_blank\">" + a[0] + "『" + a[1] + "』</a>";
+        prev_a = a;
+    }
+    window.onload = function() {
+        clock();
+        setInterval(clock, 1000);
+    }
+    </script>
+</head>
+<body>
+    <div class="d d0"></div>
+    <div class="d d1">
+        <span id="s0"></span>
+        <span id="s1"></span>
+    </div>
+</body>
+</html>
