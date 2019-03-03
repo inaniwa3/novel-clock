@@ -2,9 +2,13 @@
 
 小説の一節で時間を伝える時計です。
 
-<img src="./img/15.png" width="400" border="1">
+<table><tr><td>
+<img src="./img/15.png" width="400">
+</td></tr></table>
 
-<img src="./img/16.png" width="400" border="1">
+<kbd>
+<img src="./img/16.png" width="400">
+</kbd>
 
 <img src="./img/17.png" width="400" border="1">
 
